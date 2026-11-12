@@ -3,142 +3,139 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#101827">
-<title>NUMBER MASTER 4.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0b0b18">
+<title>NUMBER MASTER — Premium</title>
 <style>
+:root{--gold:#ffd166;--purple:#9b5cff;--bg:#0b0b18;--panel:#17172b;--muted:#a4a4bd}
 *{box-sizing:border-box}
-body{margin:0;background:#101827;color:white;font-family:Arial,sans-serif;text-align:center;padding:20px 14px}
-h1{font-size:30px;margin:12px 0 5px;letter-spacing:2px}
-.sub{color:#9eabc0;margin-bottom:22px}
-button{border:0;border-radius:13px;padding:14px 18px;font-size:16px;font-weight:bold;cursor:pointer}
-.primary{background:#f5a623;color:#172033}
-.secondary{background:#26354c;color:white}
-#menu,#game{max-width:430px;margin:auto}
+body{margin:0;padding:20px 14px 35px;background:radial-gradient(ellipse at top,#252044 0%,#101020 45%,#080812 100%);color:#fff;font-family:Arial,sans-serif;text-align:center;min-height:100vh}
+button{border:0;border-radius:14px;padding:14px 17px;font-size:14px;font-weight:800;cursor:pointer;color:white;background:#292943}
+button:active{transform:scale(.97)}
+#menu,#game{width:100%;max-width:440px;margin:auto}
+.logo{font-size:32px;font-weight:1000;letter-spacing:2px;margin:20px 0 5px;background:linear-gradient(90deg,#fff,#ffd166,#b78aff);background-clip:text;-webkit-background-clip:text;color:transparent}
+.subtitle{font-size:12px;color:var(--muted);letter-spacing:3px;margin-bottom:28px}
+.primary{background:linear-gradient(110deg,#ffc857,#ff9f43);color:#20152d;box-shadow:0 5px 25px #ffb34744}
+.purple{background:linear-gradient(110deg,#a855f7,#7045e8)}
+.secondary{background:#25253e;border:1px solid #393958}
+.menu-play{width:85%;padding:18px;font-size:18px;margin:10px 0 22px}
+.panel{background:linear-gradient(145deg,#1d1d35,#141426);border:1px solid #33334e;border-radius:19px;padding:17px;margin:14px 0;box-shadow:0 8px 25px #0003}
+.panel h3{margin:2px 0 14px;color:var(--gold);font-size:15px;letter-spacing:1px}
+.statline{display:flex;justify-content:space-between;padding:8px 2px;border-bottom:1px solid #303047;color:#c5c5d9;font-size:14px}
+.statline:last-child{border:0}
 #game{display:none}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
-.stat{background:#202d42;padding:12px 5px;border-radius:12px}
-.stat small{display:block;color:#aab8ce;font-size:11px;margin-bottom:6px}
-.stat strong{font-size:20px}
-.level{color:#f5b942;font-weight:bold;margin:12px}
-.board{background:#1b293d;padding:9px;border-radius:15px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;touch-action:none}
-.cell{aspect-ratio:1;background:#34445a;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:clamp(20px,7vw,30px);font-weight:bold;color:#172033;animation:appear .13s}
-@keyframes appear{from{transform:scale(.85);opacity:.5}to{transform:scale(1);opacity:1}}
-.v2{background:#eee4da}.v4{background:#ede0c8}.v8{background:#f2b179}.v16{background:#f59563}.v32{background:#f67c5f}.v64{background:#f65e3b}.v128{background:#edcf72}.v256{background:#edcc61}.v512{background:#edc850}.v1024{background:#edc53f}.v2048{background:#edc22e}
-.controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}
-.controls button{font-size:14px}
-.message{min-height:28px;color:#f5b942;margin:12px 0}
-.panel{background:#202d42;border-radius:14px;padding:15px;margin:14px 0;text-align:left}
-.panel h3{text-align:center;margin:3px 0 12px}
-.panel p{color:#bdc9da;margin:8px 0}
-#records{display:none}
-.overlay{display:none;position:fixed;inset:0;background:#000b;align-items:center;justify-content:center;padding:20px;z-index:5}
-.dialog{background:#202d42;padding:26px;border-radius:20px;width:100%;max-width:340px}
-.dialog h2{color:#f5b942}
+.topline{display:flex;justify-content:space-between;align-items:center;margin:5px 0 16px}
+.small-logo{font-weight:1000;letter-spacing:1px;font-size:18px;color:var(--gold)}
+.level{color:var(--gold);font-weight:800;font-size:13px;margin:10px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}
+.stat{background:linear-gradient(145deg,#242440,#17172b);border:1px solid #393957;border-radius:14px;padding:12px 4px}
+.stat small{display:block;font-size:10px;color:var(--muted);margin-bottom:7px;letter-spacing:1px}
+.stat strong{font-size:21px;color:#fff}
+.board{background:linear-gradient(145deg,#292944,#17172a);padding:9px;border:1px solid #49496c;border-radius:17px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;touch-action:none;box-shadow:0 12px 35px #0005}
+.cell{aspect-ratio:1;background:#303049;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:clamp(21px,7vw,31px);font-weight:900;color:white;position:relative;transition:background .15s;animation:appear .16s ease}
+@keyframes appear{from{transform:scale(.82);opacity:.5}to{transform:scale(1);opacity:1}}
+@keyframes merge{0%{transform:scale(1)}35%{transform:scale(1.23);filter:brightness(1.8)}100%{transform:scale(1)}}
+@keyframes glow{0%,100%{box-shadow:0 0 5px #a855f733}50%{box-shadow:0 0 18px #a855f7aa}}
+.cell.merged{animation:merge .35s ease,glow .7s}
+.cell.big{animation:glow 1.8s infinite}
+.v2{background:#55506d;color:#fff}
+.v4{background:#62518a}
+.v8{background:#824bd0}
+.v16{background:#9b4bc9}
+.v32{background:#bc459e}
+.v64{background:#d94c80}
+.v128{background:#d66c53}
+.v256{background:#e38a42}
+.v512{background:#e6a52e;color:#21152c}
+.v1024{background:#e8bf35;color:#21152c}
+.v2048{background:linear-gradient(135deg,#fff09b,#ffad33);color:#28162a;box-shadow:0 0 17px #ffd16699}
+.v4096{background:linear-gradient(135deg,#b9a0ff,#8052ff);box-shadow:0 0 17px #9b5cffaa}
+.v8192{background:linear-gradient(135deg,#ffb4d2,#f052a0);box-shadow:0 0 17px #f052a099}
+.v16384{background:linear-gradient(135deg,#8fffe0,#19b9a0);color:#092a2a}
+.message{height:30px;color:var(--gold);font-size:13px;margin:12px 0 5px}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+.controls button{font-size:12px;padding:14px 5px}
+#records,#statistics{display:none;text-align:left}
+.record{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #33334b;font-size:13px}
+.overlay{display:none;position:fixed;inset:0;background:#080812dd;z-index:10;align-items:center;justify-content:center;padding:20px}
+.dialog{width:100%;max-width:340px;padding:27px 20px;border:1px solid #61508e;border-radius:23px;background:linear-gradient(145deg,#292344,#151527);box-shadow:0 0 45px #9b5cff44;animation:pop .35s}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.dialog h2{color:var(--gold);font-size:25px}
+.dialog p{color:#ddd;line-height:1.5}
+.confetti{position:fixed;top:-15px;width:8px;height:13px;z-index:20;pointer-events:none;animation:fall 2.5s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+.footer{font-size:10px;color:#77778f;margin-top:24px}
 </style>
 </head>
 <body>
+
 <div id="menu">
-<h1>NUMBER MASTER</h1>
-<div class="sub">4.0 — Become a Number Master</div>
-<button class="primary" onclick="startGame()">ИГРАТЬ</button>
-<div class="panel">
-<h3>🏆 ТВОЯ СТАТИСТИКА</h3>
-<p>Всего игр: <b id="mGames">0</b></p>
-<p>Победы: <b id="mWins">0</b></p>
-<p>Поражения: <b id="mLosses">0</b></p>
-<p>Лучший результат: <b id="mBest">0</b></p>
-</div>
-<button class="secondary" onclick="showRecords()">🏆 РЕКОРДЫ</button>
+  <div class="logo">NUMBER MASTER</div>
+  <div class="subtitle">PREMIUM EDITION · 4.2</div>
+  <button class="primary menu-play" onclick="startGame()">▶ ИГРАТЬ</button>
+  <div class="panel">
+    <h3>🏆 ТВОЯ СТАТИСТИКА</h3>
+    <div class="statline"><span>Всего игр</span><b id="mGames">0</b></div>
+    <div class="statline"><span>Победы</span><b id="mWins">0</b></div>
+    <div class="statline"><span>Поражения</span><b id="mLosses">0</b></div>
+    <div class="statline"><span>Лучший счёт</span><b id="mBest">0</b></div>
+  </div>
+  <button class="secondary" onclick="showRecords()">🏆 РЕКОРДЫ</button>
+  <div id="menuRecords" class="panel" style="display:none">
+    <h3>ТОП-5</h3><div id="menuRecordList"></div>
+  </div>
+  <div class="footer">NUMBER MASTER © 2026</div>
 </div>
 
 <div id="game">
-<h1>NUMBER MASTER</h1>
-<div class="level" id="level">УРОВЕНЬ 1 · ЦЕЛЬ 2048</div>
-<div class="stats">
-<div class="stat"><small>СЧЁТ</small><strong id="score">0</strong></div>
-<div class="stat"><small>РЕКОРД</small><strong id="best">0</strong></div>
-<div class="stat"><small>ХОДЫ</small><strong id="moves">0</strong></div>
-</div>
-<div class="board" id="board"></div>
-<div class="message" id="message">Объединяй одинаковые числа!</div>
-<div class="controls">
-<button class="secondary" onclick="undo()">↩ ОТМЕНА</button>
-<button class="primary" onclick="newGame()">НОВАЯ ИГРА</button>
-<button class="secondary" onclick="shareResult()">📤 ПОДЕЛИТЬСЯ</button>
-<button class="secondary" id="soundBtn" onclick="toggleSound()">🔊 ЗВУК ВКЛ</button>
-<button class="secondary" onclick="showRecords()">🏆 РЕКОРДЫ</button>
-<button class="secondary" onclick="showStats()">📊 СТАТИСТИКА</button>
-<button class="secondary" onclick="goMenu()">В МЕНЮ</button>
-</div>
-<div id="records" class="panel">
-<h3>🏆 ТОП-5 РЕЗУЛЬТАТОВ</h3>
-<div id="recordList"></div>
-</div>
-<div id="statistics" class="panel" style="display:none">
-<h3>📊 СТАТИСТИКА</h3>
-<div id="statsDetails"></div>
-</div>
+  <div class="topline">
+    <div class="small-logo">NUMBER MASTER</div>
+    <button class="secondary" id="soundBtn" onclick="toggleSound()">🔊 ЗВУК ВКЛ</button>
+  </div>
+  <div class="level" id="level">УРОВЕНЬ 1 · ЦЕЛЬ 2048</div>
+  <div class="stats">
+    <div class="stat"><small>СЧЁТ</small><strong id="score">0</strong></div>
+    <div class="stat"><small>РЕКОРД</small><strong id="best">0</strong></div>
+    <div class="stat"><small>ХОДЫ</small><strong id="moves">0</strong></div>
+  </div>
+  <div class="board" id="board"></div>
+  <div class="message" id="message">Объединяй одинаковые числа!</div>
+  <div class="controls">
+    <button class="secondary" onclick="undo()">↩ ОТМЕНА</button>
+    <button class="primary" onclick="newGame()">НОВАЯ ИГРА</button>
+    <button class="purple" onclick="shareResult()">📤 ПОДЕЛИТЬСЯ</button>
+    <button class="secondary" onclick="showRecords()">🏆 РЕКОРДЫ</button>
+    <button class="secondary" onclick="showStats()">📊 СТАТИСТИКА</button>
+    <button class="secondary" onclick="goMenu()">В МЕНЮ</button>
+  </div>
+  <div id="records" class="panel">
+    <h3>🏆 ТОП-5 РЕЗУЛЬТАТОВ</h3><div id="recordList"></div>
+  </div>
+  <div id="statistics" class="panel">
+    <h3>📊 СТАТИСТИКА</h3><div id="statsDetails"></div>
+  </div>
 </div>
 
 <div class="overlay" id="overlay">
-<div class="dialog">
-<h2 id="dialogTitle">ПОБЕДА!</h2>
-<p id="dialogText"></p>
-<button class="primary" onclick="closeDialog()">ПРОДОЛЖИТЬ</button>
-</div>
+  <div class="dialog">
+    <h2 id="dialogTitle">ПОБЕДА!</h2>
+    <p id="dialogText"></p>
+    <button class="primary" onclick="closeDialog()">ПРОДОЛЖИТЬ</button>
+  </div>
 </div>
 
 <script>
 const $=id=>document.getElementById(id);
-let grid=[],score=0,moves=0,best=Number(localStorage.getItem('nmBest')||0);
-let history=null,gameOver=false,won=false,roundSaved=false;
+let grid=[],score=0,moves=0;
+let best=Number(localStorage.getItem('nmBest')||0);
 let stats=JSON.parse(localStorage.getItem('nmStats')||'{"games":0,"wins":0,"losses":0}');
 let records=JSON.parse(localStorage.getItem('nmRecords')||'[]');
-let level=1;
-let touchX=0,touchY=0;
+let history=null,gameOver=false,roundSaved=false,won=false;
+let highestMilestone=0,mergedPositions=[];
 let soundEnabled=localStorage.getItem('nmSound')!=='off';
-let audioCtx=null;
+let audioCtx=null,touchX=0,touchY=0;
 
-function playSound(type){
-  if(!soundEnabled)return;
-  try{
-    const Audio=window.AudioContext||window.webkitAudioContext;
-    if(!Audio)return;
-    if(!audioCtx)audioCtx=new Audio();
-    if(audioCtx.state==='suspended')audioCtx.resume();
-
-    const osc=audioCtx.createOscillator();
-    const gain=audioCtx.createGain();
-    const sounds={
-      merge:[520,0.09],
-      win:[880,0.25],
-      lose:[180,0.3]
-    };
-    const s=sounds[type]||sounds.merge;
-    osc.frequency.value=s[0];
-    osc.type='sine';
-    gain.gain.setValueAtTime(0.12,audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+s[1]);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime+s[1]);
-  }catch(e){}
-}
-
-function toggleSound(){
-  soundEnabled=!soundEnabled;
-  localStorage.setItem('nmSound',soundEnabled?'on':'off');
-  updateSoundButton();
-}
-
-function updateSoundButton(){
-  const btn=$('soundBtn');
-  if(btn)btn.textContent=soundEnabled?'🔊 ЗВУК ВКЛ':'🔇 ЗВУК ВЫКЛ';
-}
-
-function target(){return 2048*Math.pow(2,level-1)}
+function target(){return 2048*Math.pow(2,highestMilestone)}
 function saveStats(){localStorage.setItem('nmStats',JSON.stringify(stats))}
 function updateMenu(){
 $('mGames').textContent=stats.games;
@@ -152,18 +149,20 @@ $('game').style.display='block';
 newGame();
 }
 function goMenu(){
+if(moves>0&&!roundSaved)saveRound();
 $('game').style.display='none';
 $('menu').style.display='block';
 updateMenu();
 }
 function newGame(){
-if(grid.length && !roundSaved && score>0)saveRecord();
+if(moves>0&&!roundSaved)saveRound();
 grid=Array.from({length:4},()=>Array(4).fill(0));
-score=0;moves=0;level=1;gameOver=false;won=false;roundSaved=false;history=null;
-addTile();addTile();render();
+score=0;moves=0;history=null;gameOver=false;roundSaved=false;won=false;highestMilestone=0;
+addTile();addTile();
+$('message').textContent='Объединяй одинаковые числа!';
 $('records').style.display='none';
 $('statistics').style.display='none';
-$('message').textContent='Объединяй одинаковые числа!';
+render();
 }
 function addTile(){
 let empty=[];
@@ -175,67 +174,74 @@ grid[r][c]=Math.random()<.9?2:4;
 }
 function render(){
 $('board').innerHTML='';
-grid.flat().forEach(v=>{
+grid.forEach((row,r)=>row.forEach((v,c)=>{
 let cell=document.createElement('div');
-cell.className='cell '+(v?'v'+v:'');
+cell.className='cell'+(v?' v'+v:'');
 cell.textContent=v||'';
 if(v>=1024)cell.style.fontSize='clamp(16px,5vw,24px)';
+if(mergedPositions.some(p=>p[0]===r&&p[1]===c))cell.classList.add('merged');
+if(v>=2048)cell.classList.add('big');
 $('board').appendChild(cell);
-});
+}));
 $('score').textContent=score;
 $('best').textContent=best;
 $('moves').textContent=moves;
-$('level').textContent='УРОВЕНЬ '+level+' · ЦЕЛЬ '+target();
+$('level').textContent='УРОВЕНЬ '+(highestMilestone+1)+' · ЦЕЛЬ '+target();
+$('soundBtn').textContent=soundEnabled?'🔊 ЗВУК ВКЛ':'🔇 ЗВУК ВЫКЛ';
 }
 function snapshot(){
-history={grid:grid.map(row=>row.slice()),score,moves,level};
+history={grid:grid.map(row=>row.slice()),score,moves,highestMilestone,won};
 }
 function move(direction){
 if(gameOver)return;
 let old=grid.map(row=>row.slice());
 snapshot();
-let changed=false;
+mergedPositions=[];
 for(let i=0;i<4;i++){
-let line=[];
+let positions=[];
 for(let j=0;j<4;j++){
 let r=direction==='up'?j:direction==='down'?3-j:i;
 let c=direction==='left'?j:direction==='right'?3-j:i;
-line.push(grid[r][c]);
+positions.push([r,c]);
 }
-let compact=line.filter(Boolean);
-for(let j=0;j<compact.length-1;j++){
+let compact=positions.map(([r,c])=>grid[r][c]).filter(Boolean);
+let result=[];
+for(let j=0;j<compact.length;j++){
 if(compact[j]===compact[j+1]){
-compact[j]*=2;score+=compact[j];compact.splice(j+1,1);
+let val=compact[j]*2;
+score+=val;
+result.push(val);
+j++;
+playSound('merge');
+}else result.push(compact[j]);
 }
+while(result.length<4)result.push(0);
+positions.forEach(([r,c],j)=>{
+grid[r][c]=result[j];
+if(result[j]&&result[j]!==old[r][c])mergedPositions.push([r,c]);
+});
 }
-while(compact.length<4)compact.push(0);
-for(let j=0;j<4;j++){
-let r=direction==='up'?j:direction==='down'?3-j:i;
-let c=direction==='left'?j:direction==='right'?3-j:i;
-grid[r][c]=compact[j];
-}
-}
-changed=JSON.stringify(old)!==JSON.stringify(grid);
-if(!changed){history=null;return}
-if(score>history.score)playSound('merge');
+if(JSON.stringify(old)===JSON.stringify(grid)){history=null;return}
 moves++;
 addTile();
 if(score>best){best=score;localStorage.setItem('nmBest',best)}
 checkMilestone();
 render();
-if(!canMove())endGame(false);
+if(!canMove())endGame();
 }
 function checkMilestone(){
 let max=Math.max(...grid.flat());
-if(max>=target()&&!won){
-won=true;
-stats.wins++;
-saveStats();
+let milestone=0;
+while(max>=2048*Math.pow(2,milestone))milestone++;
+if(milestone>highestMilestone){
+highestMilestone=milestone;
+if(!won){
+won=true;stats.wins++;saveStats();
+}
 playSound('win');
-updateSoundButton();
-showDialog('🎉 УРОВЕНЬ ПРОЙДЕН!','Ты достиг числа '+target()+'! Можешь продолжать игру и идти дальше.');
-level++;
-won=false;
+confetti();
+$('message').textContent='🎉 Новый уровень открыт!';
+showDialog('🏆 УРОВЕНЬ ПРОЙДЕН!','Ты достиг '+(2048*Math.pow(2,milestone-1))+'! Продолжай и побей новый рекорд.');
 }
 }
 function canMove(){
@@ -249,23 +255,30 @@ return false;
 function endGame(){
 gameOver=true;
 playSound('lose');
-if(!roundSaved){stats.losses++;saveStats();saveRecord()}
+if(!won){stats.losses++;saveStats()}
+saveRound();
 showDialog('ИГРА ОКОНЧЕНА','Твой результат: '+score+' очков. Попробуй ещё раз!');
 }
-function saveRecord(){
+function saveRound(){
 if(roundSaved)return;
 roundSaved=true;
 stats.games++;
 saveStats();
+if(moves>0){
 records.push({score,date:new Date().toLocaleDateString('ru-RU')});
 records.sort((a,b)=>b.score-a.score);
 records=records.slice(0,5);
 localStorage.setItem('nmRecords',JSON.stringify(records));
 }
+updateMenu();
+}
 function undo(){
-if(!history)return;
-grid=history.grid;score=history.score;moves=history.moves;level=history.level;
-gameOver=false;history=null;render();
+if(!history||gameOver)return;
+grid=history.grid.map(row=>row.slice());
+score=history.score;moves=history.moves;
+highestMilestone=history.highestMilestone;won=history.won;
+history=null;mergedPositions=[];render();
+$('message').textContent='Ход отменён';
 }
 function showDialog(title,message){
 $('dialogTitle').textContent=title;
@@ -277,24 +290,66 @@ $('overlay').style.display='none';
 render();
 }
 function showRecords(){
-let html=records.length?records.map((r,i)=>'<p>'+(i+1)+'. '+r.score+' очков — '+r.date+'</p>').join(''):'<p>Пока нет результатов. Сыграй партию!</p>';
+let html=records.length?records.map((r,i)=>'<div class="record"><span>'+(i+1)+'. '+r.score+' очков</span><span>'+r.date+'</span></div>').join(''):'<p>Пока нет результатов. Сыграй партию!</p>';
+if($('game').style.display==='block'){
 $('recordList').innerHTML=html;
 $('records').style.display='block';
 $('statistics').style.display='none';
+}else{
+$('menuRecordList').innerHTML=html;
+$('menuRecords').style.display='block';
+}
 }
 function showStats(){
-$('statsDetails').innerHTML='<p>Всего игр: '+stats.games+'</p><p>Победы: '+stats.wins+'</p><p>Поражения: '+stats.losses+'</p><p>Лучший результат: '+best+'</p>';
+$('statsDetails').innerHTML='<div class="statline"><span>Всего игр</span><b>'+stats.games+'</b></div><div class="statline"><span>Победы</span><b>'+stats.wins+'</b></div><div class="statline"><span>Поражения</span><b>'+stats.losses+'</b></div><div class="statline"><span>Лучший результат</span><b>'+best+'</b></div>';
 $('statistics').style.display='block';
 $('records').style.display='none';
 }
 function shareResult(){
 let message='Я играю в NUMBER MASTER! Мой результат: '+score+' очков. Попробуй побить его!';
-if(navigator.share)navigator.share({title:'NUMBER MASTER',text:message,url:location.href}).catch(()=>{});
-else if(navigator.clipboard)navigator.clipboard.writeText(message+' '+location.href).then(()=>alert('Результат скопирован!'));
-else alert(message);
+if(navigator.share){
+navigator.share({title:'NUMBER MASTER',text:message,url:location.href}).catch(()=>{});
+}else if(navigator.clipboard){
+navigator.clipboard.writeText(message+' '+location.href).then(()=>alert('Результат скопирован!')).catch(()=>alert(message));
+}else alert(message);
+}
+function toggleSound(){
+soundEnabled=!soundEnabled;
+localStorage.setItem('nmSound',soundEnabled?'on':'off');
+$('soundBtn').textContent=soundEnabled?'🔊 ЗВУК ВКЛ':'🔇 ЗВУК ВЫКЛ';
+if(soundEnabled)playSound('merge');
+}
+function playSound(type){
+if(!soundEnabled)return;
+try{
+let Audio=window.AudioContext||window.webkitAudioContext;
+if(!Audio)return;
+if(!audioCtx)audioCtx=new Audio();
+if(audioCtx.state==='suspended')audioCtx.resume();
+let frequencies={merge:520,win:880,lose:180};
+let osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
+let duration=type==='win'?.35:.12;
+osc.type='sine';osc.frequency.value=frequencies[type]||520;
+gain.gain.setValueAtTime(.11,audioCtx.currentTime);
+gain.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+duration);
+osc.connect(gain);gain.connect(audioCtx.destination);
+osc.start();osc.stop(audioCtx.currentTime+duration);
+}catch(e){}
+}
+function confetti(){
+for(let i=0;i<55;i++){
+let el=document.createElement('div');
+el.className='confetti';
+el.style.left=Math.random()*100+'vw';
+el.style.background=['#ffd166','#9b5cff','#ff6b9d','#58e6cb','#fff'][i%5];
+el.style.animationDelay=Math.random()*.8+'s';
+document.body.appendChild(el);
+setTimeout(()=>el.remove(),3500);
+}
 }
 $('board').addEventListener('touchstart',e=>{
-touchX=e.changedTouches[0].screenX;touchY=e.changedTouches[0].screenY;
+touchX=e.changedTouches[0].screenX;
+touchY=e.changedTouches[0].screenY;
 },{passive:true});
 $('board').addEventListener('touchend',e=>{
 let dx=e.changedTouches[0].screenX-touchX;
@@ -304,10 +359,11 @@ move(Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up'));
 },{passive:true});
 document.addEventListener('keydown',e=>{
 let keys={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right'};
-if(keys[e.key]){e.preventDefault();move(keys[e.key])}
+if(keys[e.key]&&$('game').style.display==='block'){
+e.preventDefault();move(keys[e.key]);
+}
 });
 updateMenu();
-updateSoundButton();
 </script>
 </body>
 </html>
