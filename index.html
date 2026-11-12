@@ -67,9 +67,96 @@ button:active{transform:scale(.97)}
 .confetti{position:fixed;top:-15px;width:8px;height:13px;z-index:20;pointer-events:none;animation:fall 2.5s linear forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
 .footer{font-size:10px;color:#77778f;margin-top:24px}
+#splashScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: radial-gradient(circle at center, #24183d, #080812 75%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity .7s ease, visibility .7s ease;
+}
+
+#splashScreen.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-content {
+  text-align: center;
+  width: 85%;
+  animation: splashAppear 1s ease;
+}
+
+.splash-logo {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 25px;
+  box-shadow: 0 0 35px #a855f7;
+}
+
+.splash-content h1 {
+  color: #fff;
+  font-size: 27px;
+  letter-spacing: 3px;
+  margin: 25px 0 10px;
+}
+
+.splash-number {
+  font-size: 58px;
+  font-weight: 900;
+  color: #ffd166;
+  text-shadow: 0 0 25px #ffb700;
+  margin-bottom: 35px;
+}
+
+.loading-bar {
+  width: 100%;
+  height: 7px;
+  background: #302744;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.loading-progress {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #a855f7, #ffd166);
+  border-radius: 20px;
+  animation: loading 2s ease forwards;
+}
+
+.splash-content p {
+  color: #aaa;
+  font-size: 11px;
+  letter-spacing: 4px;
+  margin-top: 15px;
+}
+
+@keyframes loading {
+  to { width: 100%; }
+}
+
+@keyframes splashAppear {
+  from { opacity: 0; transform: scale(.85); }
+  to { opacity: 1; transform: scale(1); }
+}
 </style>
 </head>
 <body>
+<div id="splashScreen">
+  <div class="splash-content">
+    <img src="./IMG_0549.jpeg?v=2" class="splash-logo">
+    <h1>NUMBER MASTER</h1>
+    <div class="splash-number">2048</div>
+    <div class="loading-bar">
+      <div class="loading-progress"></div>
+    </div>
+    <p>LOADING...</p>
+  </div>
+</div>
 
 <div id="menu">
   <div class="logo">NUMBER MASTER</div>
@@ -366,6 +453,17 @@ e.preventDefault();move(keys[e.key]);
 }
 });
 updateMenu();
+</script>
+<script>
+window.addEventListener("load", function () {
+  setTimeout(function () {
+    const splash = document.getElementById("splashScreen");
+    if (splash) {
+      splash.classList.add("hide");
+      setTimeout(() => splash.remove(), 800);
+    }
+  }, 2200);
+});
 </script>
 </body>
 </html>
