@@ -1,0 +1,23 @@
+{
+  "name": "NUMBER MASTER",
+  "short_name": "NUMBER MASTER",
+  "description": "Premium 2048 Number Puzzle Game",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#080812",
+  "theme_color": "#080812",
+  "icons": [
+    {
+      "src": "./IMG_0549.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "./IMG_0549.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
