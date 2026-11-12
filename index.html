@@ -66,6 +66,7 @@ button{border:0;border-radius:13px;padding:14px 18px;font-size:16px;font-weight:
 <button class="secondary" onclick="undo()">↩ ОТМЕНА</button>
 <button class="primary" onclick="newGame()">НОВАЯ ИГРА</button>
 <button class="secondary" onclick="shareResult()">📤 ПОДЕЛИТЬСЯ</button>
+<button class="secondary" id="soundBtn" onclick="toggleSound()">🔊 ЗВУК ВКЛ</button>
 <button class="secondary" onclick="showRecords()">🏆 РЕКОРДЫ</button>
 <button class="secondary" onclick="showStats()">📊 СТАТИСТИКА</button>
 <button class="secondary" onclick="goMenu()">В МЕНЮ</button>
@@ -96,6 +97,46 @@ let stats=JSON.parse(localStorage.getItem('nmStats')||'{"games":0,"wins":0,"loss
 let records=JSON.parse(localStorage.getItem('nmRecords')||'[]');
 let level=1;
 let touchX=0,touchY=0;
+let soundEnabled=localStorage.getItem('nmSound')!=='off';
+let audioCtx=null;
+
+function playSound(type){
+  if(!soundEnabled)return;
+  try{
+    const Audio=window.AudioContext||window.webkitAudioContext;
+    if(!Audio)return;
+    if(!audioCtx)audioCtx=new Audio();
+    if(audioCtx.state==='suspended')audioCtx.resume();
+
+    const osc=audioCtx.createOscillator();
+    const gain=audioCtx.createGain();
+    const sounds={
+      merge:[520,0.09],
+      win:[880,0.25],
+      lose:[180,0.3]
+    };
+    const s=sounds[type]||sounds.merge;
+    osc.frequency.value=s[0];
+    osc.type='sine';
+    gain.gain.setValueAtTime(0.12,audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+s[1]);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime+s[1]);
+  }catch(e){}
+}
+
+function toggleSound(){
+  soundEnabled=!soundEnabled;
+  localStorage.setItem('nmSound',soundEnabled?'on':'off');
+  updateSoundButton();
+}
+
+function updateSoundButton(){
+  const btn=$('soundBtn');
+  if(btn)btn.textContent=soundEnabled?'🔊 ЗВУК ВКЛ':'🔇 ЗВУК ВЫКЛ';
+}
 
 function target(){return 2048*Math.pow(2,level-1)}
 function saveStats(){localStorage.setItem('nmStats',JSON.stringify(stats))}
@@ -176,6 +217,7 @@ grid[r][c]=compact[j];
 }
 changed=JSON.stringify(old)!==JSON.stringify(grid);
 if(!changed){history=null;return}
+if(score>history.score)playSound('merge');
 moves++;
 addTile();
 if(score>best){best=score;localStorage.setItem('nmBest',best)}
@@ -189,6 +231,8 @@ if(max>=target()&&!won){
 won=true;
 stats.wins++;
 saveStats();
+playSound('win');
+updateSoundButton();
 showDialog('🎉 УРОВЕНЬ ПРОЙДЕН!','Ты достиг числа '+target()+'! Можешь продолжать игру и идти дальше.');
 level++;
 won=false;
@@ -204,6 +248,7 @@ return false;
 }
 function endGame(){
 gameOver=true;
+playSound('lose');
 if(!roundSaved){stats.losses++;saveStats();saveRecord()}
 showDialog('ИГРА ОКОНЧЕНА','Твой результат: '+score+' очков. Попробуй ещё раз!');
 }
@@ -262,6 +307,7 @@ let keys={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right'};
 if(keys[e.key]){e.preventDefault();move(keys[e.key])}
 });
 updateMenu();
+updateSoundButton();
 </script>
 </body>
 </html>
