@@ -467,5 +467,14 @@ window.addEventListener("load", function () {
   }, 2200);
 });
 </script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("Offline mode ready"))
+      .catch(error => console.log("Offline error:", error));
+  });
+}
+</script>
 </body>
 </html>
